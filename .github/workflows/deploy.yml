@@ -11,10 +11,12 @@ permissions:
   pages: write
   id-token: write
 
-# Only one deployment at a time; don't cancel an in-progress run.
+# Only one deployment at a time. Cancel superseded runs so rapid pushes
+# don't pile up against the GitHub Pages deployment rate limit — the newest
+# commit always wins.
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:

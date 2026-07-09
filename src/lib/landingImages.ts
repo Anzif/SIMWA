@@ -22,6 +22,15 @@ const formatCategoryTitle = (name: string) =>
 
 const topLevelImages = collectImages(landingDir);
 
+// Preferred display order for gallery categories. Titles listed here appear
+// first, in this order; any others follow alphabetically.
+const categoryOrder = ["Ramadan Relief Kit", "Robotics Club", "Medical Camp"];
+
+const orderRank = (title: string) => {
+  const index = categoryOrder.indexOf(title);
+  return index === -1 ? categoryOrder.length : index;
+};
+
 const landingGalleryCategories = fs.existsSync(landingDir)
   ? fs
       .readdirSync(landingDir, { withFileTypes: true })
@@ -31,6 +40,7 @@ const landingGalleryCategories = fs.existsSync(landingDir)
         images: collectImages(path.join(landingDir, entry.name)),
       }))
       .filter((category) => category.images.length > 0)
+      .sort((a, b) => orderRank(a.title) - orderRank(b.title) || a.title.localeCompare(b.title))
   : [];
 
 const landingGalleryImages = [...topLevelImages, ...landingGalleryCategories.flatMap((category) => category.images)];
