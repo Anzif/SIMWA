@@ -11,7 +11,7 @@
 export type SubmissionKind = "message" | "suggestion";
 
 // Web3Forms access key, tied to the destination email (anzifmazeez@live.com).
-const ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const ACCESS_KEY = "4078e7f9-2a3f-4078-9e06-54d55c3154e6";
 const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 export async function sendSubmission(
