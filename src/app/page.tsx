@@ -101,7 +101,7 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {programGroups.map((group) => (
-            <div key={group.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-[var(--beige)] p-6 shadow-sm">
+            <div key={group.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-[var(--beige)] p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(15,93,59,0.12)]">
               <h3 className="text-xl font-semibold text-slate-900">{group.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-700">{group.members.join(", ")}</p>
             </div>
@@ -128,6 +128,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PDF library */}
+      <section id="pdf-section" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+        <PdfTabs />
+      </section>
+
       {/* Latest news */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10 flex items-end justify-between gap-4">
@@ -139,7 +144,7 @@ export default function Home() {
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {newsItems.map((item) => (
-            <article key={item.title} className="overflow-hidden rounded-[1.5rem] border border-[var(--gold)]/20 bg-[rgba(255,250,242,0.96)] p-6 shadow-[0_16px_40px_rgba(15,93,59,0.08)]">
+            <article key={item.title} className="overflow-hidden rounded-[1.5rem] border border-[var(--gold)]/20 bg-[rgba(255,250,242,0.96)] p-6 shadow-[0_16px_40px_rgba(15,93,59,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_55px_rgba(15,93,59,0.14)]">
               <div className="flex items-center justify-between gap-3 text-sm text-slate-500">
                 <span>{item.date}</span>
                 {item.pinned ? <span className="rounded-full bg-[var(--gold-soft)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-800">Pinned</span> : null}
@@ -160,7 +165,7 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-5">
           {pillars.map((pillar) => (
-            <article key={pillar.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-white p-6 text-center shadow-sm">
+            <article key={pillar.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-white p-6 text-center shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(15,93,59,0.12)]">
               <div className="text-3xl">{pillar.icon}</div>
               <h3 className="mt-4 text-lg font-semibold text-slate-900">{pillar.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-700">{pillar.description}</p>
@@ -177,7 +182,7 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {committeeMembers.map((member) => (
-            <article key={member.name} className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/20 bg-white shadow-[0_20px_50px_rgba(15,93,59,0.1)] text-center">
+            <article key={member.name} className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/20 bg-white shadow-[0_20px_50px_rgba(15,93,59,0.1)] text-center transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_65px_rgba(15,93,59,0.18)]">
               <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
                 {member.image ? (
                   <img src={asset(member.image)} alt={member.name} className="absolute inset-0 h-full w-full object-cover object-center" />
@@ -197,11 +202,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PDF library */}
-      <section id="pdf-section" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <PdfTabs />
-      </section>
-
       {/* Testimonials */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10">
@@ -210,8 +210,9 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.author} className="rounded-[1.5rem] border border-emerald-900/10 bg-white p-8 shadow-sm">
-              <p className="text-base leading-8 text-slate-700">“{testimonial.quote}”</p>
+            <div key={testimonial.author} className="relative rounded-[1.5rem] border border-emerald-900/10 bg-white p-8 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(15,93,59,0.12)]">
+              <span aria-hidden="true" className="absolute right-6 top-2 font-serif text-6xl leading-none text-[var(--gold)]/30">”</span>
+              <p className="relative text-base leading-8 text-slate-700">“{testimonial.quote}”</p>
               <p className="mt-4 text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">{testimonial.author}</p>
             </div>
           ))}

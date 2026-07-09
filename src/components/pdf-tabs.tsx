@@ -28,7 +28,6 @@ export default function PdfTabs() {
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">PDF Library</p>
           <h2 className="mt-3 text-3xl font-semibold text-slate-900">SIMWA Anniversary & Founding Records</h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700">Explore the full PDF editions directly on the site with matching brand colors and easy tab navigation.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           {docs.map((doc) => (
