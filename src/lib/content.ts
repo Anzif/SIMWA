@@ -102,7 +102,7 @@ export const programGroups = [
   { title: "Paraspara Sahayam", members: ["Zakeer", "Ansal Padinjapuram", "Asheer"] },
   { title: "Interest Free Banking", members: ["Jamal", "Rinshad"] },
   { title: "Cultural Programs", members: ["Basheer", "Afsal", "Sani"] },
-  { title: "Legal Cell", members: ["Advocate Shajahan Moolayil", "Advocate Shukoor Moolayil", "Advocate Vahab", "Advocate Shihab Moolayil"] },
+  { title: "Legal Cell", members: ["Advocate Shajahan Moolayil", "Advocate Shukoor Moolayil", "Advocate Shihab Moolayil"] },
   { title: "Counseling Center", members: ["Student guidance and family support team"] },
 ];
 
