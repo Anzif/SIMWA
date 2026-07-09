@@ -1,19 +1,18 @@
 // Client-side form delivery for this static site.
 //
-// Submissions are sent to FormSubmit.co (https://formsubmit.co), a free
-// form-to-email service that needs no backend or API key. Each submission is
-// emailed to the address in the endpoint below.
+// Submissions are sent to Web3Forms (https://web3forms.com), a free
+// form-to-email service that needs no backend. Each submission is emailed to
+// the address the access key is registered to.
 //
-// NOTE: FormSubmit requires a one-time activation. The FIRST submission after
-// deploy triggers a confirmation email to the owner address — click the link
-// in that email once, and all future submissions are delivered automatically.
+// SETUP: create a free access key at https://web3forms.com (enter the
+// destination email; the key is shown instantly). Paste it below. No
+// activation step is required — submissions are delivered immediately.
 
 export type SubmissionKind = "message" | "suggestion";
 
-// The AJAX endpoint keeps the user on-page (no redirect). To hide the raw
-// email from the page source, replace this with the hashed endpoint FormSubmit
-// shows in your dashboard after activation (e.g. .../ajax/xxxxxxxx).
-const FORM_ENDPOINT = "https://formsubmit.co/ajax/anzifmazeez@live.com";
+// Web3Forms access key, tied to the destination email (anzifmazeez@live.com).
+const ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const FORM_ENDPOINT = "https://api.web3forms.com/submit";
 
 export async function sendSubmission(
   kind: SubmissionKind,
@@ -32,24 +31,23 @@ export async function sendSubmission(
       Accept: "application/json",
     },
     body: JSON.stringify({
-      _subject: `New SIMWA ${kind} from ${fields.name.trim() || "website visitor"}`,
-      _template: "table",
-      _captcha: "false",
-      // FormSubmit-side honeypot as a second layer of spam filtering.
-      _honey: fields.honeypot ?? "",
+      access_key: ACCESS_KEY,
+      subject: `New SIMWA ${kind} from ${fields.name.trim() || "website visitor"}`,
+      from_name: "SIMWA Website",
       type: kind,
       name: fields.name.trim(),
       email: fields.email.trim(),
       message: fields.message.trim(),
+      // Web3Forms native honeypot; empty for real users.
+      botcheck: "",
     }),
   });
 
-  if (!response.ok) {
-    throw new Error(`Submission failed (${response.status})`);
-  }
+  const data: { success?: boolean; message?: string } = await response
+    .json()
+    .catch(() => ({}));
 
-  const data: { success?: string | boolean; message?: string } = await response.json();
-  if (data.success !== true && data.success !== "true") {
-    throw new Error(data.message || "Submission failed. Please try again.");
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || `Submission failed (${response.status}).`);
   }
 }

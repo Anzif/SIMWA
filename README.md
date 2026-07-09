@@ -17,9 +17,9 @@ Built with [Next.js](https://nextjs.org) (App Router), TypeScript, and Tailwind 
 
 ## Forms
 
-The contact and suggestion forms are delivered by [FormSubmit.co](https://formsubmit.co) — a free form-to-email service, so the site stays fully static with no backend. Submissions are emailed to the owner address configured in [`src/lib/submissions.ts`](src/lib/submissions.ts).
+The contact and suggestion forms are delivered by [Web3Forms](https://web3forms.com) — a free form-to-email service, so the site stays fully static with no backend. Submissions are emailed to the address the access key is registered to. A honeypot field guards against spam bots.
 
-> **One-time activation:** the *first* submission after deploy sends a confirmation email to the owner address. Click the link in that email once, and all future submissions are delivered automatically. To change the destination address, edit `FORM_ENDPOINT` in `src/lib/submissions.ts`.
+> **Setup:** create a free access key at [web3forms.com](https://web3forms.com) (enter the destination email — the key is shown instantly, no activation step). Paste it as `ACCESS_KEY` in [`src/lib/submissions.ts`](src/lib/submissions.ts).
 
 ## Tech Stack
 
