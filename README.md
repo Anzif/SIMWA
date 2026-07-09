@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SIMWA
+
+Official website of **SIMWA** — a Muslim welfare association dedicated to education, community welfare, and service. The site showcases news, events, the managing committee, a photo gallery, learning resources, and contact information.
+
+Built with [Next.js](https://nextjs.org) (App Router), TypeScript, and Tailwind CSS.
+
+## Features
+
+- **Home** — landing page with highlights, the five pillars, and hadith reflections
+- **About** — the association's mission and story
+- **Committee** — profiles of managing committee members
+- **Gallery** — event and community photo galleries
+- **News** — announcements and program updates
+- **Learning** — Islamic learning resources
+- **Contact** — get in touch with the association
+- **Admin** — dashboard for managing content (in progress)
+
+## Tech Stack
+
+- [Next.js 16](https://nextjs.org) — App Router
+- [React 19](https://react.dev)
+- [TypeScript 5](https://www.typescriptlang.org)
+- [Tailwind CSS 4](https://tailwindcss.com)
+- [Supabase](https://supabase.com) — backend/database (planned)
+- [sharp](https://sharp.pixelplumbing.com) & [heic-convert](https://www.npmjs.com/package/heic-convert) — image processing
 
 ## Getting Started
 
-First, run the development server:
+**Prerequisites:** Node.js 20+ and npm.
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-## Learn More
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the app for production |
+| `npm run start` | Run the production build |
+| `npm run lint` | Run ESLint |
 
-To learn more about Next.js, take a look at the following resources:
+## Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+simwa-site/
+├── public/
+│   ├── images/          # Committee, gallery, and landing images
+│   └── pdfs/            # Newsletters and documents
+├── scripts/             # Image refresh / processing utilities
+└── src/
+    ├── app/             # Pages (about, committee, gallery, news, etc.)
+    ├── components/      # Shared UI components
+    └── lib/             # Content data and helpers
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Site content (news, committee members, hadiths, etc.) lives in [`src/lib/content.ts`](src/lib/content.ts).
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The site is optimized for deployment on [Vercel](https://vercel.com), the platform built by the creators of Next.js. Push to `main` and connect the repository in Vercel to enable automatic deployments. See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for details.
