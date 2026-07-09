@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { asset } from "@/lib/assets";
 
 const docs = [
   {
@@ -52,8 +53,8 @@ export default function PdfTabs() {
           <h3 className="text-lg font-semibold">{current.title}</h3>
           <p className="mt-2 text-sm text-slate-300">{current.subtitle}</p>
         </div>
-        <object data={current.src} type="application/pdf" className="h-[55vh] w-full rounded-[1.5rem] border border-slate-800 bg-slate-950 md:h-[65vh] lg:h-[75vh]">
-          <p className="text-sm text-slate-300">Your browser does not support embedded PDFs. <a className="text-[var(--accent)] underline" href={current.src} target="_blank" rel="noreferrer">Open the PDF directly</a>.</p>
+        <object data={asset(current.src)} type="application/pdf" className="h-[55vh] w-full rounded-[1.5rem] border border-slate-800 bg-slate-950 md:h-[65vh] lg:h-[75vh]">
+          <p className="text-sm text-slate-300">Your browser does not support embedded PDFs. <a className="text-[var(--accent)] underline" href={asset(current.src)} target="_blank" rel="noreferrer">Open the PDF directly</a>.</p>
         </object>
       </div>
     </div>

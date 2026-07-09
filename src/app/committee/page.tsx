@@ -1,5 +1,6 @@
 import { SiteShell } from "@/components/site-shell";
 import { committeeMembers } from "@/lib/content";
+import { asset } from "@/lib/assets";
 
 export default function CommitteePage() {
   return (
@@ -14,7 +15,7 @@ export default function CommitteePage() {
             <article key={member.name} className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/20 bg-white shadow-[0_22px_60px_rgba(15,93,59,0.08)]">
               <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
                 {member.image ? (
-                  <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover object-center" />
+                  <img src={asset(member.image)} alt={member.name} className="absolute inset-0 h-full w-full object-cover object-center" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center border border-dashed border-slate-300 bg-slate-50 text-sm font-medium text-slate-500">
                     Photo pending

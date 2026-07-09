@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { asset } from "@/lib/assets";
 
 type Category = {
   title: string;
@@ -45,7 +46,7 @@ export default function LandingGalleryTabs({ categories }: { categories: Categor
           <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {selectedCategory.images.slice(0, 6).map((src, index) => (
               <div key={`${selectedCategory.title}-${index}`} className="overflow-hidden rounded-[1.5rem] border border-slate-800 bg-slate-900">
-                <img src={src} alt={`${selectedCategory.title} image ${index + 1}`} className="h-56 w-full object-cover transition duration-500 hover:scale-105" />
+                <img src={asset(src)} alt={`${selectedCategory.title} image ${index + 1}`} className="h-56 w-full object-cover transition duration-500 hover:scale-105" />
               </div>
             ))}
           </div>

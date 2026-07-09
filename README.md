@@ -77,4 +77,12 @@ npm run build   # generates ./out
 
 Deploy the `out/` folder to any static host — GitHub Pages, Netlify, Cloudflare Pages, Vercel, or plain object storage. All interactivity (gallery tabs, PDF viewer, contact form) runs in the browser.
 
-> **GitHub Pages note:** if serving from a project subpath (e.g. `username.github.io/SIMWA`), set `basePath: "/SIMWA"` in `next.config.ts` so asset URLs resolve correctly. This isn't needed for a custom domain or user/org page.
+### GitHub Pages (automated)
+
+This repo ships a GitHub Actions workflow ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)) that builds the site and publishes it to GitHub Pages on every push to `main`.
+
+**One-time setup:** in the repository, go to **Settings → Pages → Build and deployment → Source** and select **GitHub Actions**.
+
+The site is served from the `/SIMWA` subpath (`https://<user>.github.io/SIMWA`), configured via `basePath` in [`next.config.ts`](next.config.ts) and the `asset()` helper in [`src/lib/assets.ts`](src/lib/assets.ts). Both are production-only, so `npm run dev` stays at `http://localhost:3000/`.
+
+> If you rename the repository or use a custom domain, update `basePath` in `next.config.ts` and `BASE_PATH` in `src/lib/assets.ts` to match (or set both to `""` for a root/custom domain).

@@ -4,6 +4,7 @@ import PdfTabs from "@/components/pdf-tabs";
 import LandingGalleryTabs from "@/components/landing-gallery-tabs";
 import { activities, committeeMembers, hadiths, newsItems, pillars, programGroups, testimonials } from "@/lib/content";
 import { landingGalleryCategories, landingGalleryImages } from "@/lib/landingImages";
+import { asset } from "@/lib/assets";
 
 export default function Home() {
   return (
@@ -31,7 +32,7 @@ export default function Home() {
             <div className="animate-gallery flex w-max gap-4 py-3">
               {landingGalleryImages.concat(landingGalleryImages).map((src, index) => (
                 <div key={`${src}-${index}`} className="min-w-[20rem] overflow-hidden rounded-[1.75rem] border border-slate-800 bg-slate-900">
-                  <img src={src} alt={`SIMWA gallery image ${index + 1}`} className="h-72 w-full object-cover transition duration-500 hover:scale-105" />
+                  <img src={asset(src)} alt={`SIMWA gallery image ${index + 1}`} className="h-72 w-full object-cover transition duration-500 hover:scale-105" />
                 </div>
               ))}
             </div>
@@ -63,7 +64,7 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="relative z-10 max-w-2xl rounded-[2rem] border border-[var(--gold)]/30 bg-[rgba(255,250,242,0.86)] p-8 shadow-[0_20px_70px_rgba(15,93,59,0.12)] backdrop-blur">
           <div className="mb-5 inline-flex items-center gap-3 rounded-full border border-[var(--gold)]/30 bg-[rgba(244,217,139,0.28)] px-4 py-2 text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
-            <img src="/images/logo-emblem.png" alt="SIMWA emblem" className="h-7 w-7 rounded-full border border-white/20 bg-white/10 p-1" />
+            <img src={asset("/images/logo-emblem.png")} alt="SIMWA emblem" className="h-7 w-7 rounded-full border border-white/20 bg-white/10 p-1" />
             SIMWA • Faith • Service • Community
           </div>
           <h1 className="text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl lg:text-6xl">Sirajul Islam Madrassa Welfare Association</h1>
@@ -181,7 +182,7 @@ export default function Home() {
             <article key={member.name} className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/20 bg-white shadow-[0_20px_50px_rgba(15,93,59,0.1)] text-center">
               <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
                 {member.image ? (
-                  <img src={member.image} alt={member.name} className="absolute inset-0 h-full w-full object-cover object-center" />
+                  <img src={asset(member.image)} alt={member.name} className="absolute inset-0 h-full w-full object-cover object-center" />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center border border-dashed border-slate-300 bg-slate-50 text-sm font-medium text-slate-500">
                     Photo pending
