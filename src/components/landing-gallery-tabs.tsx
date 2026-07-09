@@ -21,7 +21,8 @@ export default function LandingGalleryTabs({ categories }: { categories: Categor
       <div className="overflow-hidden rounded-[2rem] border border-[var(--gold)]/20 bg-slate-950/95 p-6 shadow-[0_20px_60px_rgba(15,93,59,0.12)]">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">Programs Gallery</p>
+            <p className="text-sm uppercase tracking-[0.3em] text-[var(--gold-soft)]">Programs Gallery</p>
+            <h2 className="mt-3 text-3xl font-semibold text-white">Moments from our programs and events</h2>
           </div>
         </div>
 

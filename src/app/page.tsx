@@ -151,7 +151,6 @@ export default function Home() {
               </div>
               <h3 className="mt-4 text-xl font-semibold text-slate-900">{item.title}</h3>
               <p className="mt-3 text-sm leading-7 text-slate-700">{item.description}</p>
-              <Link href="#" className="mt-6 inline-flex text-sm font-semibold text-[var(--accent)]">Read more →</Link>
             </article>
           ))}
         </div>

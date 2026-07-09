@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import { newsItems } from "@/lib/content";
 
@@ -19,7 +18,6 @@ export default function NewsPage() {
               </div>
               <h2 className="mt-4 text-2xl font-semibold text-slate-900">{item.title}</h2>
               <p className="mt-3 text-sm leading-7 text-slate-700">{item.description}</p>
-              <Link href="#" className="mt-4 inline-flex text-sm font-semibold text-[var(--accent)]">Read more →</Link>
             </article>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { asset } from "@/lib/assets";
 import { MobileNav } from "@/components/mobile-nav";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const links = [
   { href: "/", label: "Home" },
@@ -15,6 +16,7 @@ const links = [
 export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-transparent text-[var(--text)]">
+      <ScrollReveal />
       <header className="sticky top-0 z-50 border-b border-[var(--gold)]/20 bg-[rgba(255,250,242,0.94)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-4">
@@ -46,10 +48,9 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </div>
           <div>
             <p className="mb-3 text-lg font-semibold text-white">Follow</p>
-            <div className="flex gap-3 text-sm">
-              <a href="#" className="transition hover:text-[var(--gold-soft)]">Facebook</a>
-              <a href="#" className="transition hover:text-[var(--gold-soft)]">Instagram</a>
-              <a href="#" className="transition hover:text-[var(--gold-soft)]">YouTube</a>
+            <div className="flex gap-4 text-sm">
+              <a href="https://www.youtube.com/@SirajulIslamMadrasa" target="_blank" rel="noopener noreferrer" className="transition hover:text-[var(--gold-soft)]">YouTube</a>
+              <a href="https://share.google/J4cCZxCFLLmtTJ1kQ" target="_blank" rel="noopener noreferrer" className="transition hover:text-[var(--gold-soft)]">Google</a>
             </div>
           </div>
         </div>
