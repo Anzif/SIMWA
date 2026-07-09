@@ -7,10 +7,9 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   // Emit `about/index.html` etc. so static hosts serve clean URLs.
   trailingSlash: true,
-  // Served from https://<user>.github.io/SIMWA in production, so route/asset
-  // URLs are prefixed with the repo name. Kept off in dev so `npm run dev`
-  // stays at http://localhost:3000/. Must match BASE_PATH in src/lib/assets.ts.
-  basePath: process.env.NODE_ENV === "production" ? "/SIMWA" : undefined,
+  // Served from the root of the custom domain https://simwa.in, so no
+  // basePath is needed. (If you ever host under a subpath instead, set
+  // basePath here and BASE_PATH in src/lib/assets.ts to match.)
 };
 
 export default nextConfig;
