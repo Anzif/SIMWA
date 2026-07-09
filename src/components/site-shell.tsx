@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { asset } from "@/lib/assets";
+import { MobileNav } from "@/components/mobile-nav";
 
 const links = [
   { href: "/", label: "Home" },
@@ -17,7 +18,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 border-b border-[var(--gold)]/20 bg-[rgba(255,250,242,0.94)] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
           <Link href="/" className="flex items-center gap-4">
-            <div className="flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.5rem] border border-[var(--gold)]/40 bg-[linear-gradient(135deg,_var(--accent)_0%,_#1f764f_100%)] p-2 shadow-[0_8px_20px_rgba(15,93,59,0.18)]">
+            <div className="flex h-16 w-16 items-center justify-center overflow-hidden rounded-[1.5rem] border border-[var(--gold)]/40 bg-[linear-gradient(135deg,_var(--accent)_0%,_#1f764f_100%)] p-2 shadow-[0_8px_20px_rgba(15,93,59,0.18)] md:h-24 md:w-24">
               <img src={asset("/images/logo-emblem.png")} alt="SIMWA emblem" className="max-h-full max-w-full object-contain" />
             </div>
             <div>
@@ -32,6 +33,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </Link>
             ))}
           </nav>
+          <MobileNav links={links} />
         </div>
       </header>
       <main>{children}</main>
