@@ -16,6 +16,23 @@ const stats = [
 export default function Home() {
   return (
     <SiteShell>
+      {/* Hadith scroll — directly under the menu */}
+      <section className="overflow-hidden bg-[rgba(255,250,242,0.96)] py-4 shadow-[0_12px_30px_rgba(15,93,59,0.12)]">
+        <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 text-sm font-semibold text-slate-800 lg:px-8">
+          <span className="rounded-full border border-[var(--gold)]/30 bg-[rgba(244,217,139,0.28)] px-4 py-2 text-[var(--accent)]">Hadith Scroll</span>
+          <div className="relative w-full overflow-hidden rounded-full border border-[var(--accent)]/15 bg-white/90 py-2">
+            <div className="animate-marquee flex min-w-max items-center gap-10 px-6 text-sm leading-6 text-slate-800">
+              {hadiths.concat(hadiths).map((hadith, index) => (
+                <div key={`${hadith.source}-${index}`} className="inline-flex items-center gap-3 whitespace-nowrap">
+                  <span className="font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">{hadith.source}:</span>
+                  <span>“{hadith.text}”</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Hero — introduces the organization */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,155,60,0.22),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(15,93,59,0.20),_transparent_42%)]" />
@@ -35,7 +52,6 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <Link href="/about" className="rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(15,93,59,0.25)] transition hover:bg-[var(--accent-2)]">Learn More About Us</Link>
                 <Link href="/contact" className="rounded-full border border-[var(--accent)]/20 bg-white/80 px-6 py-3 text-sm font-semibold text-slate-800 transition hover:bg-white">Contact Us</Link>
-                <Link href="/contact" className="rounded-full border border-[var(--gold)]/40 bg-[rgba(244,217,139,0.28)] px-6 py-3 text-sm font-semibold text-amber-800 transition hover:bg-[rgba(244,217,139,0.4)]">Send Suggestions</Link>
               </div>
             </div>
             <div className="relative">
@@ -61,23 +77,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Hadith scroll */}
-      <section className="overflow-hidden bg-[rgba(255,250,242,0.96)] py-4 shadow-[0_12px_30px_rgba(15,93,59,0.12)]">
-        <div className="mx-auto flex max-w-7xl items-center gap-4 px-6 text-sm font-semibold text-slate-800 lg:px-8">
-          <span className="rounded-full border border-[var(--gold)]/30 bg-[rgba(244,217,139,0.28)] px-4 py-2 text-[var(--accent)]">Hadith Scroll</span>
-          <div className="relative w-full overflow-hidden rounded-full border border-[var(--accent)]/15 bg-white/90 py-2">
-            <div className="animate-marquee flex min-w-max items-center gap-10 px-6 text-sm leading-6 text-slate-800">
-              {hadiths.concat(hadiths).map((hadith, index) => (
-                <div key={`${hadith.source}-${index}`} className="inline-flex items-center gap-3 whitespace-nowrap">
-                  <span className="font-semibold uppercase tracking-[0.25em] text-[var(--accent)]">{hadith.source}:</span>
-                  <span>“{hadith.text}”</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Auto-scrolling gallery */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,155,60,0.25),_transparent_36%),radial-gradient(circle_at_bottom_right,_rgba(15,93,59,0.22),_transparent_38%)]" />
@@ -94,24 +93,19 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About SIMWA */}
+      {/* Program groups */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-[var(--gold)]/25 bg-[linear-gradient(135deg,_rgba(255,250,242,0.95)_0%,_rgba(247,235,210,0.95)_100%)] p-8 shadow-[0_12px_40px_rgba(15,93,59,0.08)]">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">About SIMWA</p>
-            <h2 className="mt-3 text-3xl font-semibold text-slate-900">Vision, mission, objectives, and history in one place.</h2>
-            <p className="mt-5 text-base leading-8 text-slate-700">SIMWA is committed to strengthening Islamic education, supporting the needs of the community, and preserving the legacy of the masjid and madrassa through compassionate service, organized programs, and sincere leadership.</p>
-            <Link href="/about" className="mt-6 inline-flex rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--accent-2)]">Read Full About Page</Link>
-          </div>
-          <div className="rounded-[2rem] border border-[var(--gold)]/25 bg-[linear-gradient(135deg,_rgba(15,93,59,0.95)_0%,_rgba(26,111,77,0.96)_100%)] p-8 text-white shadow-[0_12px_40px_rgba(15,93,59,0.15)]">
-            <h3 className="text-2xl font-semibold">What SIMWA stands for</h3>
-            <ul className="mt-5 space-y-3 text-sm leading-7 text-white/85">
-              <li>• Faith-centered leadership</li>
-              <li>• Education and moral guidance</li>
-              <li>• Welfare and charity</li>
-              <li>• Community unity and trust</li>
-            </ul>
-          </div>
+        <div className="mb-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Program Groups</p>
+          <h2 className="mt-2 text-3xl font-semibold text-slate-900">Dedicated teams serving the community</h2>
+        </div>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {programGroups.map((group) => (
+            <div key={group.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-[var(--beige)] p-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-900">{group.title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-700">{group.members.join(", ")}</p>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -175,28 +169,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Islamic knowledge */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="rounded-[2rem] border border-emerald-900/10 bg-[var(--beige)] p-8 shadow-sm">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Islamic Knowledge</p>
-          <h2 className="mt-2 text-3xl font-semibold text-slate-900">Daily hadith, Quran reflection, and important dates</h2>
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-[1.25rem] bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Hadith</p>
-              <p className="mt-3 text-sm leading-7 text-slate-700">“The strongest man is the one who controls himself when angry.”</p>
-            </div>
-            <div className="rounded-[1.25rem] bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Verse of the Day</p>
-              <p className="mt-3 text-sm leading-7 text-slate-700">“Indeed, with hardship comes ease.” — Quran 94:6</p>
-            </div>
-            <div className="rounded-[1.25rem] bg-white p-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Important Date</p>
-              <p className="mt-3 text-sm leading-7 text-slate-700">Ramadan Kareem and Eid celebrations are shared with the community each year.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Committee members */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10">
@@ -221,22 +193,6 @@ export default function Home() {
                 <p className="mt-4 text-sm leading-7 text-slate-700">{member.bio}</p>
               </div>
             </article>
-          ))}
-        </div>
-      </section>
-
-      {/* Program groups */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Program Groups</p>
-          <h2 className="mt-2 text-3xl font-semibold text-slate-900">Dedicated teams serving the community</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {programGroups.map((group) => (
-            <div key={group.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-[var(--beige)] p-6 shadow-sm">
-              <h3 className="text-xl font-semibold text-slate-900">{group.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-700">{group.members.join(", ")}</p>
-            </div>
           ))}
         </div>
       </section>
