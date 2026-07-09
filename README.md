@@ -69,4 +69,12 @@ Site content (news, committee members, hadiths, etc.) lives in [`src/lib/content
 
 ## Deployment
 
-The site is optimized for deployment on [Vercel](https://vercel.com), the platform built by the creators of Next.js. Push to `main` and connect the repository in Vercel to enable automatic deployments. See the [Next.js deployment docs](https://nextjs.org/docs/app/building-your-application/deploying) for details.
+This is a **fully static site** — `npm run build` produces a self-contained `out/` folder of HTML, CSS, and JS (configured via `output: "export"` in [`next.config.ts`](next.config.ts)). No server or backend is required.
+
+```bash
+npm run build   # generates ./out
+```
+
+Deploy the `out/` folder to any static host — GitHub Pages, Netlify, Cloudflare Pages, Vercel, or plain object storage. All interactivity (gallery tabs, PDF viewer, contact form) runs in the browser.
+
+> **GitHub Pages note:** if serving from a project subpath (e.g. `username.github.io/SIMWA`), set `basePath: "/SIMWA"` in `next.config.ts` so asset URLs resolve correctly. This isn't needed for a custom domain or user/org page.
