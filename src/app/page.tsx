@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteShell } from "@/components/site-shell";
 import PdfTabs from "@/components/pdf-tabs";
+import { SuggestionForm } from "@/components/suggestion-form";
 import LandingGalleryTabs from "@/components/landing-gallery-tabs";
 import { activities, committeeMembers, hadiths, newsItems, pillars, programGroups, testimonials } from "@/lib/content";
 import { landingGalleryCategories, landingGalleryImages } from "@/lib/landingImages";
@@ -233,12 +234,7 @@ export default function Home() {
         <div className="rounded-[2rem] border border-emerald-900/10 bg-slate-950 p-8 text-white shadow-sm">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-400">Suggestion Box</p>
           <h2 className="mt-2 text-3xl font-semibold">Share your ideas and feedback with SIMWA</h2>
-          <form className="mt-8 grid gap-4 lg:grid-cols-2">
-            <input className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-300" placeholder="Name" />
-            <input className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-300" placeholder="Email" />
-            <textarea className="lg:col-span-2 min-h-32 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-300" placeholder="Your suggestion" />
-            <button className="lg:col-span-2 w-fit rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500">Submit Suggestion</button>
-          </form>
+          <SuggestionForm />
         </div>
       </section>
     </SiteShell>

@@ -1,15 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-type Submission = {
-  name: string;
-  email: string;
-  message: string;
-  submittedAt: string;
-};
-
-const STORAGE_KEY = "simwa-messages";
+import { saveSubmission } from "@/lib/submissions";
 
 export function ContactForm() {
   const [name, setName] = useState("");
@@ -19,32 +11,7 @@ export function ContactForm() {
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    const submission: Submission = {
-      name: name.trim(),
-      email: email.trim(),
-      message: message.trim(),
-      submittedAt: new Date().toISOString(),
-    };
-
-    // Persist to the browser so nothing is lost on a static site.
-    const existing = localStorage.getItem(STORAGE_KEY);
-    const messages: Submission[] = existing ? JSON.parse(existing) : [];
-    messages.push(submission);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
-
-    // Also offer the message as a downloadable text file.
-    const contents = `Name: ${submission.name}\nEmail: ${submission.email}\nDate: ${submission.submittedAt}\n\n${submission.message}\n`;
-    const blob = new Blob([contents], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `simwa-message-${Date.now()}.txt`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-
+    saveSubmission("message", { name, email, message });
     setName("");
     setEmail("");
     setMessage("");
