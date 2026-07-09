@@ -1,21 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { saveSubmission } from "@/lib/submissions";
+import { sendSubmission } from "@/lib/submissions";
 
 export function SuggestionForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    saveSubmission("suggestion", { name, email, message });
-    setName("");
-    setEmail("");
-    setMessage("");
-    setSent(true);
+    setStatus("sending");
+    setError("");
+    try {
+      await sendSubmission("suggestion", { name, email, message });
+      setName("");
+      setEmail("");
+      setMessage("");
+      setStatus("sent");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -44,14 +52,18 @@ export function SuggestionForm() {
       />
       <button
         type="submit"
-        className="lg:col-span-2 w-fit rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500"
+        disabled={status === "sending"}
+        className="lg:col-span-2 w-fit rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Submit Suggestion
+        {status === "sending" ? "Sending…" : "Submit Suggestion"}
       </button>
-      {sent && (
+      {status === "sent" && (
         <p className="lg:col-span-2 text-sm font-medium text-emerald-300">
-          Thank you! Your suggestion has been saved and a copy downloaded.
+          Thank you! Your suggestion has been sent.
         </p>
+      )}
+      {status === "error" && (
+        <p className="lg:col-span-2 text-sm font-medium text-red-300">{error}</p>
       )}
     </form>
   );

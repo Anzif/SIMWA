@@ -15,6 +15,12 @@ Built with [Next.js](https://nextjs.org) (App Router), TypeScript, and Tailwind 
 - **Contact** — get in touch with the association
 - **Admin** — dashboard for managing content (in progress)
 
+## Forms
+
+The contact and suggestion forms are delivered by [FormSubmit.co](https://formsubmit.co) — a free form-to-email service, so the site stays fully static with no backend. Submissions are emailed to the owner address configured in [`src/lib/submissions.ts`](src/lib/submissions.ts).
+
+> **One-time activation:** the *first* submission after deploy sends a confirmation email to the owner address. Click the link in that email once, and all future submissions are delivered automatically. To change the destination address, edit `FORM_ENDPOINT` in `src/lib/submissions.ts`.
+
 ## Tech Stack
 
 - [Next.js 16](https://nextjs.org) — App Router

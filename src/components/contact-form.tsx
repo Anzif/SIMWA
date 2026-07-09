@@ -1,21 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { saveSubmission } from "@/lib/submissions";
+import { sendSubmission } from "@/lib/submissions";
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [error, setError] = useState("");
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    saveSubmission("message", { name, email, message });
-    setName("");
-    setEmail("");
-    setMessage("");
-    setSent(true);
+    setStatus("sending");
+    setError("");
+    try {
+      await sendSubmission("message", { name, email, message });
+      setName("");
+      setEmail("");
+      setMessage("");
+      setStatus("sent");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   }
 
   return (
@@ -46,14 +54,18 @@ export function ContactForm() {
       />
       <button
         type="submit"
-        className="mt-4 rounded-full bg-emerald-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-900"
+        disabled={status === "sending"}
+        className="mt-4 rounded-full bg-emerald-800 px-6 py-3 text-sm font-semibold text-white transition hover:bg-emerald-900 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Send Message
+        {status === "sending" ? "Sending…" : "Send Message"}
       </button>
-      {sent && (
+      {status === "sent" && (
         <p className="mt-4 text-sm font-medium text-emerald-700">
-          Thank you! Your message has been saved and a copy downloaded.
+          Thank you! Your message has been sent.
         </p>
+      )}
+      {status === "error" && (
+        <p className="mt-4 text-sm font-medium text-red-600">{error}</p>
       )}
     </form>
   );
