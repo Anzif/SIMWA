@@ -202,21 +202,6 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
         <div className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Program Groups</p>
-          <h2 className="mt-2 text-3xl font-semibold text-slate-900">Dedicated teams serving the community</h2>
-        </div>
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {programGroups.map((group) => (
-            <div key={group.title} className="rounded-[1.5rem] border border-emerald-900/10 bg-[var(--beige)] p-6 shadow-sm">
-              <h3 className="text-xl font-semibold text-slate-900">{group.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-slate-700">{group.members.join(", ")}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-        <div className="mb-10">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-emerald-700">Testimonials</p>
           <h2 className="mt-2 text-3xl font-semibold text-slate-900">Voices from the community</h2>
         </div>
