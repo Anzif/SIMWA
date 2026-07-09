@@ -7,6 +7,7 @@ export function SuggestionForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
 
@@ -15,7 +16,7 @@ export function SuggestionForm() {
     setStatus("sending");
     setError("");
     try {
-      await sendSubmission("suggestion", { name, email, message });
+      await sendSubmission("suggestion", { name, email, message, honeypot });
       setName("");
       setEmail("");
       setMessage("");
@@ -28,6 +29,17 @@ export function SuggestionForm() {
 
   return (
     <form onSubmit={handleSubmit} className="mt-8 grid gap-4 lg:grid-cols-2">
+      {/* Honeypot: hidden from users, filled only by bots. */}
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.target.value)}
+      />
       <input
         className="rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-slate-300"
         placeholder="Name"

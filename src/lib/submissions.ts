@@ -17,8 +17,14 @@ const FORM_ENDPOINT = "https://formsubmit.co/ajax/anzifmazeez@live.com";
 
 export async function sendSubmission(
   kind: SubmissionKind,
-  fields: { name: string; email: string; message: string },
+  fields: { name: string; email: string; message: string; honeypot?: string },
 ): Promise<void> {
+  // Honeypot: humans leave this empty; bots tend to fill it. Silently accept
+  // (pretend success) without sending so bots get no signal.
+  if (fields.honeypot && fields.honeypot.trim() !== "") {
+    return;
+  }
+
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",
     headers: {
@@ -29,6 +35,8 @@ export async function sendSubmission(
       _subject: `New SIMWA ${kind} from ${fields.name.trim() || "website visitor"}`,
       _template: "table",
       _captcha: "false",
+      // FormSubmit-side honeypot as a second layer of spam filtering.
+      _honey: fields.honeypot ?? "",
       type: kind,
       name: fields.name.trim(),
       email: fields.email.trim(),

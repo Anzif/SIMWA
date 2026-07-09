@@ -7,6 +7,7 @@ export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [honeypot, setHoneypot] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
 
@@ -15,7 +16,7 @@ export function ContactForm() {
     setStatus("sending");
     setError("");
     try {
-      await sendSubmission("message", { name, email, message });
+      await sendSubmission("message", { name, email, message, honeypot });
       setName("");
       setEmail("");
       setMessage("");
@@ -28,6 +29,17 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="rounded-3xl border border-emerald-900/10 bg-white p-8 shadow-sm">
+      {/* Honeypot: hidden from users, filled only by bots. */}
+      <input
+        type="text"
+        name="_honey"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden="true"
+        className="absolute left-[-9999px] h-0 w-0 opacity-0"
+        value={honeypot}
+        onChange={(event) => setHoneypot(event.target.value)}
+      />
       <div className="grid gap-4 md:grid-cols-2">
         <input
           className="rounded-2xl border border-slate-200 px-4 py-3"
