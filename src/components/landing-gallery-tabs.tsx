@@ -21,8 +21,6 @@ export default function LandingGalleryTabs({ categories }: { categories: Categor
         <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-sm uppercase tracking-[0.3em] text-[var(--accent)]">Programs Gallery</p>
-            <h2 className="mt-3 text-3xl font-semibold text-white">Browse images by program category</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300">Choose a program tab to preview the most recent images from that activity. This compact layout keeps the homepage cleaner while still showing the visual highlights.</p>
           </div>
         </div>
 
