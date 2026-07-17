@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { InaugurationPopup } from "@/components/inauguration-popup";
 
 export const metadata: Metadata = {
   title: "SIMWA | Sirajul Islam Madrassa Welfare Association",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <InaugurationPopup />
+        {children}
+      </body>
     </html>
   );
 }
